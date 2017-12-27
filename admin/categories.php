@@ -6,10 +6,10 @@
  * Time: 23:21
  */
 ?>
-<?php include "includes/header.php";?>
+<?php include "includes/admin_header.php";?>
 <div id="wrapper">
     <!-- Navigation -->
-    <?php include "includes/navigation.php"; ?>
+    <?php include "includes/admin_navigation.php"; ?>
     <div id="page-wrapper">
 
         <div class="container-fluid">
@@ -24,7 +24,29 @@
                     </h1>
                     <div class="row">
                         <div class="col-xs-6">
-                            <form action="">
+                            <?php
+                            if(isset($_POST['submit'])){
+                                $cat_title = $_POST['cat_title'];
+                                //validations
+                                if($cat_title == "" || empty($cat_title)){
+                                    $message = "fields Cant be Blank";
+                                echo  '<div class="alert alert-danger">' . $message . '</div>';
+                                }else{
+                                    $query = "INSERT INTO categories (cat_title) ";
+                                    $query .= "VALUE ('{$cat_title}')";
+
+                                    $create_category_query = mysqli_query($connection,$query);
+                                    if(!$create_category_query){
+                                        die("something went wrong" . mysqli_error($connection));
+                                    }else{
+                                        $message = "Categories Added";
+                                        echo  '<div class="alert alert-success">' . $message . '</div>';
+                                    }
+                                }
+
+                            }
+                            ?>
+                            <form action="" method="post">
                                 <div class="form-group">
                                     <label for="cat-title">Add Category</label>
                                     <input type="text" class="form-control" name="cat_title" />
@@ -35,6 +57,11 @@
                             </form>
                         </div>
                         <div class="col-xs-6">
+                            <?php
+                            $query = "SELECT * FROM categories";
+                            $select_categories_table = mysqli_query($connection,$query);
+
+                            ?>
                             <table class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -43,11 +70,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Baseball Categorys</td>
-                                    <td>Baseball Categorys</td>
 
-                                </tr>
+                                <?php
+                                    while ($row = mysqli_fetch_assoc($select_categories_table)){
+                                    $categories_id = $row['cat_id'];
+                                    $categories_title = $row["cat_title"];
+                                    echo "<tr>";
+                                    echo "<td>" . $categories_id . "</td>";
+                                    echo "<td>" . $categories_title . "</td>";
+                                    echo "</tr>";
+                                }
+                                ?>
+
                                 </tbody>
                             </table>
                         </div>
@@ -63,4 +97,4 @@
     </div>
     <!-- /#page-wrapper -->
 
-    <?php include "includes/footer.php"; ?>
+    <?php include "includes/admin_footer.php"; ?>
