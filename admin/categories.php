@@ -67,18 +67,30 @@
                                 <tr>
                                     <th>id</th>
                                     <th>Categories Titles</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 <?php
+                                // display categories
                                     while ($row = mysqli_fetch_assoc($select_categories_table)){
                                     $categories_id = $row['cat_id'];
                                     $categories_title = $row["cat_title"];
                                     echo "<tr>";
                                     echo "<td>" . $categories_id . "</td>";
-                                    echo "<td>" . $categories_title . "</td>";
+                                        echo "<td>" . $categories_title . "</td>";
+                                        echo "<td>"."<a href='categories.php?delete={$categories_id}'>Delete</a>";
                                     echo "</tr>";
+                                }
+                                ?>
+
+                                <?php
+                                // delete categories
+                                if(isset($_GET['delete'])){
+                                    $selected_cat_id = $_GET['delete'];
+                                    $query = "DELETE FROM categories WHERE cat_id = {$selected_cat_id }";
+                                    $delete_cat = mysqli_query($connection,$query);
                                 }
                                 ?>
 
