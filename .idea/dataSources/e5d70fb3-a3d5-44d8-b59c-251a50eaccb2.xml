@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="blog_cms@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.3">
+    <root id="1"/>
+    <schema id="2" parent="1" name="blog_cms">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="bootstrap-to-wordpress"/>
+    <schema id="4" parent="1" name="class"/>
+    <schema id="5" parent="1" name="cms_gaurav"/>
+    <schema id="6" parent="1" name="glass_eye_prototype"/>
+    <schema id="7" parent="1" name="globe_bank"/>
+    <schema id="8" parent="1" name="information_schema"/>
+    <schema id="9" parent="1" name="joomla"/>
+    <schema id="10" parent="1" name="mydb"/>
+    <schema id="11" parent="1" name="mysql"/>
+    <schema id="12" parent="1" name="performance_schema"/>
+    <schema id="13" parent="1" name="sys"/>
+    <schema id="14" parent="1" name="widget_corp"/>
+    <schema id="15" parent="1" name="widget_crop"/>
+    <schema id="16" parent="1" name="wordpress_db"/>
+    <schema id="17" parent="1" name="wordpress_woo"/>
+    <table id="18" parent="2" name="categories"/>
+    <table id="19" parent="2" name="posts"/>
+    <column id="20" parent="18" name="cat_id">
+      <Position>1</Position>
+      <DataType>int(3)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="21" parent="18" name="cat_title">
+      <Position>2</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="22" parent="18" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>cat_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="23" parent="19" name="post_id">
+      <Position>1</Position>
+      <DataType>int(3)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="24" parent="19" name="post_tags">
+      <Position>2</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="19" name="post_status">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;draft&apos;</DefaultExpression>
+    </column>
+    <column id="26" parent="19" name="post_category_id">
+      <Position>4</Position>
+      <DataType>int(3)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="19" name="post_title">
+      <Position>5</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="19" name="post_author">
+      <Position>6</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="29" parent="19" name="post_date">
+      <Position>7</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="30" parent="19" name="post_image">
+      <Position>8</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="19" name="post_content">
+      <Position>9</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="19" name="post_user">
+      <Position>10</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="19" name="post_view_counts">
+      <Position>11</Position>
+      <DataType>int(25)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="34" parent="19" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>post_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
