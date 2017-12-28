@@ -6,7 +6,10 @@
  * Time: 16:27
  */
 ?>
+<?php ob_start(); ?>
+
 <?php require_once "db.php"; ?>
+<?php include "admin_functions.php"?>
 <!DOCTYPE html>
 <html lang="en">
 
