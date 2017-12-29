@@ -6,6 +6,13 @@
  * Time: 23:30
  */
 
+function confirm($result){
+    global $connection;
+    if(!$result){
+        die("something went wrong" . mysqli_error($connection));
+    }
+}
+
 // redirect to onther page
 function redirec_to($page){
     header("Location:".$page);

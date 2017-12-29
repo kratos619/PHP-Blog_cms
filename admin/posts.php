@@ -61,7 +61,7 @@
                                     <td><?php echo $post_title; ?></td>
                                     <td><?php echo $post_category_id; ?></td>
                                     <td><?php echo $post_status; ?></td>
-                                    <td><?php echo $post_image; ?></td>
+                                    <td><img height="50" width="100" src="images/<?php echo $post_image; ?>"></td>
                                     <td><?php echo $post_tags; ?></td>
                                     <td><?php echo $post_comments; ?></td>
                                     <td><?php echo $post_date; ?></td>
