@@ -31,7 +31,7 @@
 
         $create_post = mysqli_query($connection, $query);
 
-        confirm($create_post);
+        confirm_connection($create_post);
     }
 
     ?>
@@ -107,7 +107,4 @@
 
     </div>
     <!-- /#page-wrapper -->
-
     <?php include "includes/admin_footer.php"; ?>
-
-

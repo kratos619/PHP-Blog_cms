@@ -6,7 +6,7 @@
  * Time: 23:30
  */
 
-function confirm($result){
+function confirm_connection($result){
     global $connection;
     if(!$result){
         die("something went wrong" . mysqli_error($connection));

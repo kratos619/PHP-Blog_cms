@@ -14,6 +14,7 @@
                 $select_all_post_query = mysqli_query($connection,$query);
 
                 while($row = mysqli_fetch_assoc($select_all_post_query)){
+                    $post_id = $row['post_id'];
                     $post_title = $row["post_title"];
                     $post_author = $row["post_author"];
                    // $post_title = $row["post_title"];
@@ -28,7 +29,7 @@
 
                 <!-- First Blog Post -->
                 <h2>
-                    <a href="#"><?php echo $post_title; ?></a>
+                    <a href="post.php?full_post=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
                 </h2>
                 <p class="lead">
                     by <a href="index.php"><?php echo $post_author; ?></a>
@@ -38,7 +39,7 @@
                 <img class="img-responsive" src="images/image_1.jpg" alt="">
                 <hr>
                 <p><?php echo $post_content; ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-primary" href="post.php?full_post=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
                     <?php
