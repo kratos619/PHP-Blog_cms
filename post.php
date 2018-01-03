@@ -1,6 +1,6 @@
+
 <?php include "includes/header.php"; ?>
 <?php include "includes/navigation.php"; ?>
-<?php require_once "includes/db.php"; ?>
     <!-- Page Content -->
     <div class="container">
 
@@ -9,6 +9,7 @@
             <!-- Blog Post Content Column -->
             <div class="col-lg-8">
                 <?php
+
                 if(isset($_GET['full_post'])) {
                     $selected_post_id = $_GET['full_post'];
                     $query = "SELECT * FROM posts WHERE post_id = {$selected_post_id}";
@@ -55,6 +56,41 @@
                     }
                 }
                 ?>
+                <!-- Comments Form -->
+                <div class="well">
+                    <h4>Leave a Comment:</h4>
+                    <form method="post" role="form">
+                        <label>Name</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="comment_author">
+                        </div>
+                        <label>Email</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="comment_email">
+                        </div>
+                        <label>comment</label>
+                        <div class="form-group">
+                            <textarea class="form-control" name="comment_content" rows="3"></textarea>
+                        </div>
+                        <button type="submit" name="submit_comment" class="btn btn-primary">Comment</button>
+                    </form>
+                    <?php
+                    if(isset($_POST['submit_comment'])  && isset($_GET['full_post'])){
+                        $selected_post_id = $_GET['full_post'];
+                        $comment_author = $_POST['comment_author'];
+                        $comment_email = $_POST['comment_email'];
+                        $comment_content = $_POST['comment_content'];
+
+                        $query = "insert into comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, commetn_date) ";
+                        $query .= "VALUES ({$selected_post_id} , '{$comment_author}', '{$comment_email}', '{$comment_content}','unapproved',now())";
+                        $create_comment = mysqli_query($connection, $query);
+
+                        confirm_connection($create_comment);
+
+                    }
+                    ?>
+                </div>
+
             </div>
 
             <!-- Blog Sidebar Widgets Column -->

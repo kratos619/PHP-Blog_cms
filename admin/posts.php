@@ -70,7 +70,7 @@
                                     while($row = mysqli_fetch_assoc($set_cat)) {
                                         $cat_by_post = $row['cat_title'];
                                         ?>
-                                     <td><?php echo $cat_by_post;?><?php echo $post_category_id; ?></td>
+                                     <td><?php echo $cat_by_post;?></td>
                                     <?php } ?>
                                     <td><?php echo $post_status; ?></td>
                                     <td><img height="50" width="100" src="images/<?php echo $post_image; ?>"></td>
