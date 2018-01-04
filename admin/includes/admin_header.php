@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <?php
 /**
  * Created by PhpStorm.
@@ -6,10 +7,8 @@
  * Time: 16:27
  */
 ?>
-<?php ob_start(); ?>
-
 <?php require_once "db.php"; ?>
-<?php include "admin_functions.php"?>
+<?php require_once "admin_functions.php"?>
 <!DOCTYPE html>
 <html lang="en">
 
