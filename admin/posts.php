@@ -34,7 +34,7 @@
                                     <th>Status</th>
                                     <th>Image</th>
                                     <th>Tags</th>
-                                    <th>comments</th>
+
                                     <th>Date</th>
                                     <th>Action</th>
                                 </tr>
@@ -75,7 +75,7 @@
                                     <td><?php echo $post_status; ?></td>
                                     <td><img height="50" width="100" src="images/<?php echo $post_image; ?>"></td>
                                     <td><?php echo $post_tags; ?></td>
-                                    <td><?php echo $post_comments; ?></td>
+
                                     <td><?php echo $post_date; ?></td>
                                     <td><a href="edit_post.php?edit_post=<?php echo $post_id; ?>">Edit Post</a> || <a
                                                 href="posts.php?delete_post=<?php echo $post_id ?>">Delete Post</a></td>

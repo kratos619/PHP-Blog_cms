@@ -78,16 +78,12 @@ if(isset($_GET['approve'])){
     redirec_to("comments.php");
 }
 
-
 if(isset($_GET['unapprove'])){
     $selected_comment_id = $_GET['unapprove'];
     $query = "update comments set comment_status = 'unapprove' WHERE comment_id = {$selected_comment_id}";
     $unapprove_comments = mysqli_query($connection, $query);
     redirec_to("comments.php");
 }
-
-
-
 
 if(isset($_GET['delete_comment'])){
     $selected_comment_id = $_GET['delete_comment'];

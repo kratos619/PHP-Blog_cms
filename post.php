@@ -90,6 +90,29 @@
                     }
                     ?>
                 </div>
+                <!-- Comment -->
+                <?php
+                $query = "select * from comments WHERE comment_post_id = {$selected_post_id } AND comment_status = 'approve'";
+                $display_comment = mysqli_query($connection, $query);
+                while($row = mysqli_fetch_assoc($display_comment)){
+                    $comment_content = $row['comment_content'];
+                    $commetn_date = $row['commetn_date'];
+                    $comment_author = $row['comment_author'];
+                ?>
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="http://placehold.it/64x64" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><?php echo $comment_author; ?>
+                                <small><?php echo $commetn_date;?></small>
+                            </h4>
+                        <?php echo $comment_content; ?>
+                        </div>
+                    </div>
+                    <?php
+                }
+                ?>
 
             </div>
 
