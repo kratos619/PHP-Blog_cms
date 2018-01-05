@@ -28,6 +28,19 @@ require_once "db.php";
          </div><!-- /.input-group -->
         </form> <!-- /.form group -->
     </div>
+    <!-- Blog Search Well -->
+    <div class="well">
+        <h4>Blog Search</h4>
+        <form action="includes/login.php" method="post">
+            <div class="form-group">
+                <input name="user_name" type="text" class="form-control" placeholder="Username or email" />
+            </div><!-- /.input-group -->
+            <div class="form-group">
+                <input name="user_password" type="password" class="form-control" placeholder="password" />
+            </div><!-- /.input-group -->
+            <input type="submit" value="Sign Up" name="sign_up" class="btn btn-primary" >
+        </form> <!-- /.form group -->
+    </div>
 
     <?php
 
