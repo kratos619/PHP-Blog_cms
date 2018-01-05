@@ -44,7 +44,7 @@
                             case 'add_users':
                                 include "includes/add_users.php";
                                 break;
-                            case 'edit_post';
+                            case 'edit_users':
                                 include "includes/edit_users.php";
                                 break;
                             default:

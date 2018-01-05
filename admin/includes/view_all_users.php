@@ -15,6 +15,7 @@
         <th>Last Name</th>
         <th>User Email</th>
         <th>Role</th>
+        <th>action</th>
     </tr>
     </thead>
     <tbody>
@@ -38,6 +39,10 @@
             <td><?php echo $user_last_name; ?></td>
             <td><?php echo $user_email; ?></td>
             <td><?php echo $user_role; ?></td>
+            <td><a href="users.php?source=edit_users&user_id=<?php echo $user_id; ?>">Edit User</a>
+                |
+                <a href="users.php?delete_user=<?php echo $user_id; ?>">Delete User</a>
+            </td>
         </tr>
         <?php
     }
@@ -54,24 +59,10 @@
     </tbody>
 </table>
 <?php
-if(isset($_GET['approve'])){
-    $selected_comment_id = $_GET['approve'];
-    $query = "update comments set comment_status = 'approve' WHERE comment_id = {$selected_comment_id}";
-    $approve_comments = mysqli_query($connection, $query);
-    redirec_to("comments.php");
-}
-
-if(isset($_GET['unapprove'])){
-    $selected_comment_id = $_GET['unapprove'];
-    $query = "update comments set comment_status = 'unapprove' WHERE comment_id = {$selected_comment_id}";
-    $unapprove_comments = mysqli_query($connection, $query);
-    redirec_to("comments.php");
-}
-
-if(isset($_GET['delete_comment'])){
-    $selected_comment_id = $_GET['delete_comment'];
-    $query = "delete from comments WHERE comment_id = {$selected_comment_id}";
+if(isset($_GET['delete_user'])){
+    $selected_user_id = $_GET['delete_user'];
+    $query = "delete from users WHERE user_id = {$selected_user_id}";
 $delete_comment = mysqli_query($connection,$query);
-redirec_to("comments.php");
+redirec_to("users.php");
 }
 ?>
