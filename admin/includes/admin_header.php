@@ -1,4 +1,10 @@
 <?php ob_start(); ?>
+<?php session_start(); ?>
+<?php require_once "admin_functions.php"?>
+<?php if(isset($_SESSION['user_first_name']) == null){
+    redirec_to("../index.php");
+}
+?>
 <?php
 /**
  * Created by PhpStorm.
@@ -8,7 +14,7 @@
  */
 ?>
 <?php require_once "db.php"; ?>
-<?php require_once "admin_functions.php"?>
+
 <!DOCTYPE html>
 <html lang="en">
 

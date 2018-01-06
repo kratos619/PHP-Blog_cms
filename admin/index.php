@@ -12,7 +12,7 @@
 
                         <h1 class="page-header">
                            Welcome to Admin
-                            <small>Author</small>
+                            <small><?php echo $_SESSION['user_first_name']; ?></small>
                         </h1>
 
                     </div>
