@@ -28,6 +28,7 @@ if(isset($_POST['sign_up'])){
         $user_password = $row['user_password'];
         $user_email = $row['user_email'];
         $user_role = $row['user_role'];
+        $user_id = $row['user_id'];
     }
 
     if($username !== $user_name or $username !== $user_email and $password !== $user_password){
@@ -40,6 +41,7 @@ if(isset($_POST['sign_up'])){
         $_SESSION['user_first_name'] = $user_first_name;
         $_SESSION['user_last_name'] = $user_last_name;
         $_SESSION['user_role'] = $user_role;
+        $_SESSION['user_id'] = $user_id;
 
         redirec_to("../admin/index.php");
     }else{

@@ -41,10 +41,7 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <h1 class="page-header">
-                        Welcome to Admin
-                        <small>Author</small>
-                    </h1>
+                    <?php include "includes/page_header.php";?>
                     <div class="row">
                         <div class="col-md-8">
                             <h3 class="bg-info well">Add Post</h3>
