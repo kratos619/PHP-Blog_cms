@@ -1,7 +1,8 @@
-<?php ob_start(); ?>
 <?php session_start(); ?>
+<?php ob_start(); ?>
 <?php require_once "admin_functions.php"?>
-<?php if(isset($_SESSION['user_first_name']) == null){
+<?php
+if(isset($_SESSION['username']) == null){
     redirec_to("../index.php");
 }
 ?>

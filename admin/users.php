@@ -16,7 +16,12 @@
  */
 ?>
 <?php include "includes/admin_header.php";?>
-
+<?php
+$userrole = $_SESSION['user_role'];
+if($userrole === 'subscriber'){
+    redirec_to("index.php");
+}
+?>
 <div id="wrapper">
     <!-- Navigation -->
     <?php include "includes/admin_navigation.php"; ?>

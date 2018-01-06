@@ -6,10 +6,8 @@
  * Time: 07:21
  */
 ?>
-<?php include "admin_header.php";?>
 <div id="wrapper">
     <!-- Navigation -->
-    <?php include "admin_navigation.php"; ?>
     <?php
     if(isset($_POST['create_user'])){
         $user_name = $_POST['user_name'];
@@ -79,4 +77,4 @@
                     </div>
 
     <!-- /#page-wrapper -->
-    <?php include "admin_footer.php"; ?>
+
