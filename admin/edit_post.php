@@ -49,6 +49,7 @@
                                      <?php
                                      //update post
                                      if(isset($_POST['update_post'])){
+
                                          $selected_post_id = $_GET['edit_post'];
                                          $post_tags = $_POST['post_tags'];
                                          //$post_status  = $_POST['post_status'];
@@ -67,6 +68,7 @@
                                          $query = "update posts set post_image='{$post_image}', post_title='{$post_title}',post_date={$post_date}, post_category_id={$post_category_id},post_author='{$post_author}',post_image='{$post_image}', post_tags='{$post_tags}',post_content='{$post_content}' where post_id ={$selected_post_id}";
                                          $update_post = mysqli_query($connection, $query);
                                          confirm_connection($update_post);
+                                         echo "<p class='alert-success lead'> post Updated <a href='posts.php?full_post=$selected_post_id;'>View Post</a> </p>";
                                      }
                                      ?>
                                 <div class="form-group">

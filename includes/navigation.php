@@ -6,6 +6,7 @@
  * Time: 21:53
  */
 ?>
+<?php session_start(); ?>
 <?php require_once "db.php";?>
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -20,7 +21,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <a class="navbar-brand" href="index.php">Start Bootstrap</a>
         </div>
 
 
@@ -39,6 +40,19 @@
                 }
                 ?>
                 <li><a href="admin">Admin</a></li>
+                <?php
+                if(isset($_SESSION['user_role'])){
+                    if(isset($_GET['full_post'])){
+                        $selected_post_id =  $_GET['full_post'];
+
+                echo   "<li><a href='admin/edit_post.php?edit_post={$selected_post_id}'>Edit This Post</a></li>";
+
+                    }
+
+                }
+
+                ?>
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->

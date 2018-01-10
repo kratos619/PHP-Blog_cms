@@ -10,7 +10,7 @@
             <div class="col-md-8">
 
                 <?php
-                $query = "select * from posts";
+                $query = "select * from posts ";
                 $select_all_post_query = mysqli_query($connection,$query);
 
                 while($row = mysqli_fetch_assoc($select_all_post_query)){
@@ -21,6 +21,7 @@
                     $post_date  = $row["post_date"];
                     $post_content = $row["post_content"];
                     $post_tags = $row["post_tags"];
+                    $post_image = $row['post_image'];
              ?>
                 <h1 class="page-header">
                     Page Heading
@@ -36,7 +37,7 @@
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date; ?></p>
                 <hr>
-                <img class="img-responsive" src="images/image_1.jpg" alt="">
+                <img class="img-responsive" src="admin/images/<?php echo $post_image; ?>" alt="">
                 <hr>
                 <p><?php echo $post_content; ?></p>
                 <a class="btn btn-primary" href="post.php?full_post=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
