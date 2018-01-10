@@ -21,10 +21,51 @@
                 <div class="col-lg-12">
 
                     <?php include "includes/page_header.php";?>
+                    <?php
+                    if(isset($_POST['checkBoxArray'])){
+                        foreach ($_POST['checkBoxArray'] as $item){
+                            $bulk_option = $_POST['bulk_option'];
+
+                            switch ($bulk_option){
+                                case 'publish':
+                                    $query = "update posts set post_status = '{$bulk_option}' WHERE post_id = {$item} ";
+                                    $updat_to_publish = mysqli_query($connection, $query);
+                                       redirec_to("posts.php");
+                                    break;
+                                case 'draft':
+                                    $query = "update posts set post_status = '{$bulk_option}' WHERE post_id = {$item} ";
+                                    $updat_to_draft = mysqli_query($connection, $query);
+                                    redirec_to("posts.php");
+                                    break;
+                                case 'delete':
+                                    $query = "delete from posts WHERE post_id = {$item} ";
+                                    $delete_by_bulk = mysqli_query($connection, $query);
+                                    break;
+
+                            }
+                        }
+                    }
+
+                    ?>
+                    <form action="" method="post">
 
                             <table class="table table-bordered">
+                               
+                               <div id="bulkOptionContainer"  class="col-xs-4 form-group">
+                                   <select name="bulk_option" class="form-control" id="">
+                                       <option value="">select Options</option>
+                                       <option value="publish">Publish</option>
+                                       <option value="draft">Draft</option>
+                                       <option value="delete">Delete</option>
+                                   </select>
+                               </div>
+                                <div class="col-xs-4">
+                                    <input type="submit" name="submit" class="btn btn-success" value="Apply">
+                                    <a href="add_post.php" class="btn btn-primary">Add Post</a>
+                                </div>
                                 <thead>
                                 <tr>
+                                    <th>Select</th>
                                     <th>Id</th>
                                     <th>Authors</th>
                                     <th>Title</th>
@@ -58,6 +99,7 @@
                                     $post_comments =$row ['post_comments'];
                                     ?>
                                 <tr>
+                                    <td><input class="checkbox" name="checkBoxArray[]" type="checkbox" value="<?php echo $post_id; ?>"></td>
                                     <td><?php echo $post_id; ?></td>
                                     <td><?php echo $post_author; ?></td>
                                     <td><?php echo $post_title; ?></td>
@@ -93,6 +135,7 @@
 
                                 </tbody>
                             </table>
+                    </form>
 
 
                 </div>
