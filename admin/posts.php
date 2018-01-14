@@ -6,7 +6,7 @@
  * Time: 16:24
  */
 ?>
-<?php include "includes/admin_header.php";?>
+<?php include "includes/admin_header.php"; ?>
 
 <div id="wrapper">
     <!-- Navigation -->
@@ -20,17 +20,17 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <?php include "includes/page_header.php";?>
+                    <?php include "includes/page_header.php"; ?>
                     <?php
-                    if(isset($_POST['checkBoxArray'])){
-                        foreach ($_POST['checkBoxArray'] as $item){
+                    if (isset($_POST['checkBoxArray'])) {
+                        foreach ($_POST['checkBoxArray'] as $item) {
                             $bulk_option = $_POST['bulk_option'];
 
-                            switch ($bulk_option){
+                            switch ($bulk_option) {
                                 case 'publish':
                                     $query = "update posts set post_status = '{$bulk_option}' WHERE post_id = {$item} ";
                                     $updat_to_publish = mysqli_query($connection, $query);
-                                       redirec_to("posts.php");
+                                    redirec_to("posts.php");
                                     break;
                                 case 'draft':
                                     $query = "update posts set post_status = '{$bulk_option}' WHERE post_id = {$item} ";
@@ -41,31 +41,30 @@
                                     $query = "delete from posts WHERE post_id = {$item} ";
                                     $delete_by_bulk = mysqli_query($connection, $query);
                                     break;
-
                             }
                         }
                     }
-
                     ?>
                     <form action="" method="post">
 
-                            <table class="table table-bordered">
-                               
-                               <div id="bulkOptionContainer"  class="col-xs-4 form-group">
-                                   <select name="bulk_option" class="form-control" id="">
-                                       <option value="">select Options</option>
-                                       <option value="publish">Publish</option>
-                                       <option value="draft">Draft</option>
-                                       <option value="delete">Delete</option>
-                                   </select>
-                               </div>
-                                <div class="col-xs-4">
-                                    <input type="submit" name="submit" class="btn btn-success" value="Apply">
-                                    <a href="add_post.php" class="btn btn-primary">Add Post</a>
-                                </div>
-                                <thead>
+                        <table class="table table-bordered">
+
+                            <div id="bulkOptionContainer"  class="col-xs-4 form-group">
+                                <select name="bulk_option" class="form-control" id="">
+                                    <option value="">select Options</option>
+                                    <option value="publish">Publish</option>
+                                    <option value="draft">Draft</option>
+                                    <option value="delete">Delete</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="submit" name="submit" class="btn btn-success" value="Apply">
+                                <a href="add_post.php" class="btn btn-primary">Add Post</a>
+                            </div>
+                            <thead>
                                 <tr>
-                                    <th>Select</th>
+                                    <th><input id="selectAllCheckbox" class="checkbox" type="checkbox"></th>
+
                                     <th>Id</th>
                                     <th>Authors</th>
                                     <th>Title</th>
@@ -75,56 +74,58 @@
                                     <th>Tags</th>
 
                                     <th>Date</th>
+                                    <td>View Posts</td>
                                     <th>Action</th>
                                 </tr>
-                                </thead>
-                                <tbody>
+                            </thead>
+                            <tbody>
 
-                                <?php
-                                $query = "SELECT * FROM posts";
-                                $display_posts = mysqli_query($connection,$query);
+<?php
+$query = "SELECT * FROM posts";
+$display_posts = mysqli_query($connection, $query);
 
-                                while($row = mysqli_fetch_assoc($display_posts)){
-                                    $post_id = $row['post_id'];
-                                    $post_tags = $row['post_tags'];
-                                    $post_status  = $row['post_status'];
-                                    $post_user = $row['post_user'];
-                                    $post_category_id = $row['post_category_id'];
-                                    $post_date = $row['post_date'];
-                                    $post_title = $row['post_title'];
-                                    $post_image = $row['post_image'];
-                                    $post_status = $row['post_status'];
-                                    $post_content = $row['post_content'];
-                                    $post_author  = $row['post_author'];
-                                    $post_comments =$row ['post_comments'];
-                                    ?>
-                                <tr>
-                                    <td><input class="checkbox" name="checkBoxArray[]" type="checkbox" value="<?php echo $post_id; ?>"></td>
-                                    <td><?php echo $post_id; ?></td>
-                                    <td><?php echo $post_author; ?></td>
-                                    <td><?php echo $post_title; ?></td>
+while ($row = mysqli_fetch_assoc($display_posts)) {
+    $post_id = $row['post_id'];
+    $post_tags = $row['post_tags'];
+    $post_status = $row['post_status'];
+    $post_user = $row['post_user'];
+    $post_category_id = $row['post_category_id'];
+    $post_date = $row['post_date'];
+    $post_title = $row['post_title'];
+    $post_image = $row['post_image'];
+    $post_status = $row['post_status'];
+    $post_content = $row['post_content'];
+    $post_author = $row['post_author'];
+    $post_comments = $row ['post_comments'];
+    ?>
+                                    <tr>
+                                        <td><input class="checkbox" name="checkBoxArray[]" type="checkbox" value="<?php echo $post_id; ?>"></td>
+                                        <td><?php echo $post_id; ?></td>
+                                        <td><?php echo $post_author; ?></td>
+                                        <td><?php echo $post_title; ?></td>
 
-                                    <?php
-                                    $query = "select * from categories WHERE cat_id = {$post_category_id}";
-                                    $set_cat = mysqli_query($connection, $query);
-                                    while($row = mysqli_fetch_assoc($set_cat)) {
-                                        $cat_by_post = $row['cat_title'];
-                                        ?>
-                                     <td><?php echo $cat_by_post;?></td>
-                                    <?php } ?>
-                                    <td><?php echo $post_status; ?></td>
-                                    <td><img height="50" width="100" src="images/<?php echo $post_image; ?>"></td>
-                                    <td><?php echo $post_tags; ?></td>
 
-                                    <td><?php echo $post_date; ?></td>
-                                    <td><a href="edit_post.php?edit_post=<?php echo $post_id; ?>">Edit Post</a> || <a
+    <?php
+    $query = "select * from categories WHERE cat_id = {$post_category_id}";
+    $set_cat = mysqli_query($connection, $query);
+    while ($row = mysqli_fetch_assoc($set_cat)) {
+        $cat_by_post = $row['cat_title'];
+        ?>
+                                            <td><?php echo $cat_by_post; ?></td>
+                                        <?php } ?>
+                                        <td><?php echo $post_status; ?></td>
+                                        <td><img height="50" width="100" src="images/<?php echo $post_image; ?>"></td>
+                                        <td><?php echo $post_tags; ?></td>
+                                        <td><a href="../post.php?full_post=<?php echo $post_id; ?>">View Post</a></td>
+                                        <td><?php echo $post_date; ?></td>
+                                        <td><a href="edit_post.php?edit_post=<?php echo $post_id; ?>">Edit Post</a> || <a
                                                 href="posts.php?delete_post=<?php echo $post_id ?>">Delete Post</a></td>
-                                </tr>
-                                    <?php
-                                    }
-                                    ?>
+                                    </tr>
+    <?php
+}
+?>
                                 <?php
-                                if(isset($_GET['delete_post'])){
+                                if (isset($_GET['delete_post'])) {
                                     $delete_selected_post_id = $_GET['delete_post'];
                                     $query = "delete from posts WHERE post_id = {$delete_selected_post_id}";
                                     $delete_post = mysqli_query($connection, $query);
@@ -133,8 +134,8 @@
                                 }
                                 ?>
 
-                                </tbody>
-                            </table>
+                            </tbody>
+                        </table>
                     </form>
 
 
@@ -148,5 +149,5 @@
     </div>
     <!-- /#page-wrapper -->
 
-    <?php include "includes/admin_footer.php"; ?>
+<?php include "includes/admin_footer.php"; ?>
 

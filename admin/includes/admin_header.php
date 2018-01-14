@@ -45,7 +45,7 @@ if(isset($_SESSION['username']) == null){
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
+    <script></script>
 </head>
 
 <body>
