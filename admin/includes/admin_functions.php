@@ -3,6 +3,13 @@
 function redirec_to($page){
     header("Location:".$page);
 }
+
+
+function mY_prep($string){
+    global $connection;
+    return mysqli_real_escape_string($connection, $string);
+}
+
 /**
  * Created by PhpStorm.
  * User: Gaurav

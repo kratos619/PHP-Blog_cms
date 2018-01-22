@@ -41,7 +41,7 @@
             <td><?php echo $user_role; ?></td>
             <td><a href="users.php?source=edit_users&user_id=<?php echo $user_id; ?>">Edit User</a>
                 |
-                <a href="users.php?delete_user=<?php echo $user_id; ?>">Delete User</a>
+                <a onclick="javascript: return confirm('Are You Sure');" href="users.php?delete_user=<?php echo $user_id; ?>">Delete User</a>
             </td>
         </tr>
         <?php

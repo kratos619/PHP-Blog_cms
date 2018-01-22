@@ -73,8 +73,8 @@
                                     <th>Image</th>
                                     <th>Tags</th>
 
-                                    <th>Date</th>
-                                    <td>View Posts</td>
+                                    <th>View Posts </th>
+                                    <td>Date</td>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -93,7 +93,7 @@ while ($row = mysqli_fetch_assoc($display_posts)) {
     $post_date = $row['post_date'];
     $post_title = $row['post_title'];
     $post_image = $row['post_image'];
-    $post_status = $row['post_status'];
+   // $post_status = $row['post_status'];
     $post_content = $row['post_content'];
     $post_author = $row['post_author'];
     $post_comments = $row ['post_comments'];
@@ -119,7 +119,7 @@ while ($row = mysqli_fetch_assoc($display_posts)) {
                                         <td><a href="../post.php?full_post=<?php echo $post_id; ?>">View Post</a></td>
                                         <td><?php echo $post_date; ?></td>
                                         <td><a href="edit_post.php?edit_post=<?php echo $post_id; ?>">Edit Post</a> || <a
-                                                href="posts.php?delete_post=<?php echo $post_id ?>">Delete Post</a></td>
+                                                onclick="javascript: return confirm('Are You Sure');"  href="posts.php?delete_post=<?php echo $post_id ?>">Delete Post</a></td>
                                     </tr>
     <?php
 }

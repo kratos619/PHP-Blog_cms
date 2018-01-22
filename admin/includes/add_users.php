@@ -17,9 +17,19 @@
         //$user_image = $_POST['user_image'];
         $user_role = $_POST['user_role'];
         $user_password = $_POST['user_password'];
-
+        
+        //add salt
+        $query = "select user_salt from users";
+        $select_rand_salt = mysqli_query($connection, $query);
+        confirm_connection($select_rand_salt);
+        $row = mysqli_fetch_assoc($select_rand_salt);
+        $salt = $row['user_salt'];
+        
+        //crypt password
+        $user_password = crypt($user_password,$salt);
+        
         $query = "insert into users (user_name, user_password, user_first_name, user_last_name, user_email,user_role) ";
-        $query .= "values ('{$user_first_name}','{$user_last_name}','{$user_name}','{$user_email}','{$user_password}','{$user_role}')";
+        $query .= "values ('{$user_name}','{$user_password}','{$user_first_name}','{$user_last_name}','{$user_email}','{$user_role}')";
 
         $create_user = mysqli_query($connection, $query);
         confirm_connection($create_user);

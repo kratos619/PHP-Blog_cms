@@ -9,10 +9,6 @@ session_start();
 require_once "db.php";
 require_once "public_functions.php";
 
-function mY_prep($string){
-    global $connection;
-    return mysqli_real_escape_string($connection, $string);
-}
 
 if(isset($_POST['sign_up'])){
     $username = mY_prep($_POST['user_name']);
@@ -31,6 +27,8 @@ if(isset($_POST['sign_up'])){
         $user_id = $row['user_id'];
 
     }
+    
+    $password = crypt($password,$user_password);
 
     if($username !== $user_name or $username !== $user_email and $password !== $user_password){
         redirec_to("index.php");

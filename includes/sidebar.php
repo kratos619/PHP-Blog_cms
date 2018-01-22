@@ -30,7 +30,7 @@ require_once "db.php";
     </div>
     <!-- Blog Search Well -->
     <div class="well">
-        <h4>Blog Search</h4>
+        <h4>Log IN</h4>
         <form action="includes/login.php" method="post">
             <div class="form-group">
                 <input name="user_name" type="text" class="form-control" placeholder="Username or email" />

@@ -6,6 +6,11 @@
  * Time: 23:30
  */
 
+function mY_prep($string){
+    global $connection;
+    return mysqli_real_escape_string($connection, $string);
+}
+
 function confirm_connection($result){
     global $connection;
     if(!$result){

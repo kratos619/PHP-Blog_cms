@@ -91,7 +91,16 @@
                 $user_role = $_POST['user_role'];
                 $user_password = $_POST['user_password'];
 
-                $query = "update users set  user_name = '{$user_name}', user_first_name = '{$user_first_name}', user_last_name = '{$user_last_name}', user_email = '{$user_email}', user_role = '{$user_role}', user_password = '{$user_password}' WHERE user_id = {$selected_user} ";
+                $query = "select user_salt from users";
+                $select_rand_salt = mysqli_query($connection, $query);
+                confirm_connection($select_rand_salt);
+                $row = mysqli_fetch_assoc($select_rand_salt);
+                
+                $salt = $row['user_salt'];
+                
+                $hashed_password = crypt($user_password,$salt);
+                
+                $query = "update users set  user_name = '{$user_name}', user_first_name = '{$user_first_name}', user_last_name = '{$user_last_name}', user_email = '{$user_email}', user_role = '{$user_role}', user_password = '{$hashed_password}' WHERE user_id = {$selected_user} ";
 
                 $create_user = mysqli_query($connection, $query);
                 confirm_connection($create_user);
