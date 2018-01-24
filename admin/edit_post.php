@@ -34,7 +34,7 @@
                                 // display selected posts
                                 while ($row = mysqli_fetch_assoc($edit_post)) {
                                     $post_tags = $row['post_tags'];
-                                    $post_status  = $row['post_status'];
+                                //    $post_status  = $row['post_status'];
                                     $post_user = $row['post_user'];
                                     $post_category_id = $row['post_category_id'];
                                     $post_date = $row['post_date'];

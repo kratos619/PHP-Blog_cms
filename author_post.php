@@ -11,17 +11,9 @@
                 <?php
 
                 if(isset($_GET['full_post'])) {
-                    
                     $selected_post_id = $_GET['full_post'];
-                    
-                    // count post viewss
-                    $query = "update posts set post_counts = post_counts + 1 where post_id = {$selected_post_id}";
-                    $count_post = mysqli_query($connection, $query);
-                     confirm_connection($count_post);
-                     
-                    
-                    
-                    $query = "SELECT * FROM posts WHERE post_id = {$selected_post_id}";
+                    $selected_post_author = $_GET['author'];
+                    $query = "SELECT * FROM posts WHERE post_author = '{$selected_post_author}'";
                     $select_all_post_query = mysqli_query($connection, $query);
                     while ($row = mysqli_fetch_assoc($select_all_post_query)){
                         $post_title = $row["post_title"];
@@ -31,7 +23,6 @@
                         $post_content = $row["post_content"];
                         $post_tags = $row["post_tags"];
                         $post_image = $row['post_image'];
-              
 
                    ?>
 
@@ -64,10 +55,6 @@
 
                         <?php
                     }
-                } else {
-                    
-
-                    redirec_to("index.php");
                 }
                 ?>
                 <!-- Comments Form -->

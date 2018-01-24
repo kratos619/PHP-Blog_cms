@@ -22,12 +22,12 @@
         $post_status = mY_prep($_POST['post_status']);
         $post_content = $_POST['post_content'];
         $post_author  = $_POST['post_author'];
-        $post_view_counts = 4;
+        //$post_view_counts = 4;
         move_uploaded_file($post_image_temp,"images/$post_image");
 
-        $query = "insert into posts(post_tags,post_category_id,post_title,post_author,post_date,post_image,post_content,post_view_counts) ";
+        $query = "insert into posts(post_tags,post_category_id,post_title,post_author,post_date,post_image,post_content) ";
         $query .= " VALUES('{$post_tags}',{$post_category_id}, ";
-        $query .= "'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}',$post_view_counts)";
+        $query .= "'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}')";
 
         $create_post = mysqli_query($connection, $query);
 

@@ -41,6 +41,33 @@
                                     $query = "delete from posts WHERE post_id = {$item} ";
                                     $delete_by_bulk = mysqli_query($connection, $query);
                                     break;
+
+                                case 'clone':
+                                    $query = "select * from posts where post_id = '{$item}'";
+
+                                    $select_items = mysqli_query($connection, $query);
+                                    confirm_connection($select_items);
+                                    while ($row = mysqli_fetch_assoc($select_items)) {
+                                        $post_id = $row['post_id'];
+                                        $post_tags = $row['post_tags'];
+                                        $post_status = $row['post_status'];
+                                        $post_user = $row['post_user'];
+                                        $post_category_id = $row['post_category_id'];
+                                        $post_date = $row['post_date'];
+                                        $post_title = $row['post_title'];
+                                        $post_image = $row['post_image'];
+                                        // $post_status = $row['post_status'];
+                                        $post_content = $row['post_content'];
+                                        $post_author = $row['post_author'];
+                                        $post_comments = $row ['post_comments'];
+                                    }
+                                    
+        $query = "insert into posts (post_tags,post_category_id,post_title,post_author,post_date,post_image,post_content) ";
+        $query .= " VALUES('{$post_tags}',{$post_category_id}, ";
+        $query .= "'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}')";
+        $copy_post = mysqli_query($connection, $query);
+        confirm_connection($copy_post);
+        break;
                             }
                         }
                     }
@@ -55,6 +82,7 @@
                                     <option value="publish">Publish</option>
                                     <option value="draft">Draft</option>
                                     <option value="delete">Delete</option>
+                                    <option value="clone">Clone</option>
                                 </select>
                             </div>
                             <div class="col-xs-4">
@@ -72,7 +100,7 @@
                                     <th>Status</th>
                                     <th>Image</th>
                                     <th>Tags</th>
-
+                                    <th>Post View Count</th>   
                                     <th>View Posts </th>
                                     <td>Date</td>
                                     <th>Action</th>
@@ -93,10 +121,11 @@ while ($row = mysqli_fetch_assoc($display_posts)) {
     $post_date = $row['post_date'];
     $post_title = $row['post_title'];
     $post_image = $row['post_image'];
-   // $post_status = $row['post_status'];
+    // $post_status = $row['post_status'];
     $post_content = $row['post_content'];
     $post_author = $row['post_author'];
     $post_comments = $row ['post_comments'];
+    $post_views = $row['post_counts'];
     ?>
                                     <tr>
                                         <td><input class="checkbox" name="checkBoxArray[]" type="checkbox" value="<?php echo $post_id; ?>"></td>
@@ -116,6 +145,7 @@ while ($row = mysqli_fetch_assoc($display_posts)) {
                                         <td><?php echo $post_status; ?></td>
                                         <td><img height="50" width="100" src="images/<?php echo $post_image; ?>"></td>
                                         <td><?php echo $post_tags; ?></td>
+                                        <td><?php echo $post_views; ?></td>
                                         <td><a href="../post.php?full_post=<?php echo $post_id; ?>">View Post</a></td>
                                         <td><?php echo $post_date; ?></td>
                                         <td><a href="edit_post.php?edit_post=<?php echo $post_id; ?>">Edit Post</a> || <a
