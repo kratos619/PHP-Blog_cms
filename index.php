@@ -8,9 +8,42 @@
 
             <!-- Blog Entries Column -->
             <div class="col-md-8">
+                <h1 class="page-header">
+                    Page Heading
+                    <small>Secondary Text</small>
+              
+                </h1>
+                
 
                 <?php
+                
+                if(isset($_GET['page'])){
+                   $page = $_GET['page'];
+                }else{
+                    
+                    $page = "";
+                }
+                
+                if($page == "" || $page == 1){
+                    $page_1 = 0;
+                    
+                }else{
+                    $page_1 = ($page * 5) -5;
+                }
+                
+                
+                
+                // count posts
                 $query = "select * from posts ";
+                $find_count = mysqli_query($connection, $query);
+                confirm_connection($find_count);
+                $count = mysqli_num_rows($find_count);
+                
+                $count = ceil($count / 5);
+                
+               
+                
+                $query = "select * from posts limit {$page_1}, 5";
                 $select_all_post_query = mysqli_query($connection,$query);
 
                 while($row = mysqli_fetch_assoc($select_all_post_query)){
@@ -23,13 +56,13 @@
                     $post_tags = $row["post_tags"];
                     $post_image = $row['post_image'];
              ?>
-                <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1>
+               
+                
 
                 <!-- First Blog Post -->
                 <h2>
+                    <?php echo $count; ?>
+                    
                     <a href="post.php?full_post=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
                 </h2>
                 <p class="lead">
@@ -65,4 +98,18 @@
         </div>
         <!-- /.row -->
 
+        <ul class="pager">
+            
+            <?php
+            for($i = 1 ; $i <= $count; $i++){
+                
+                ?>
+            <li><a href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+            <?php
+            }
+            
+            ?>
+            
+        </ul>
+        
 <?php include "includes/footer.php"; ?>
