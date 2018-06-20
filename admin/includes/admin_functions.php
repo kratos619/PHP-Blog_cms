@@ -4,6 +4,26 @@ function redirec_to($page){
     header("Location:".$page);
 }
 
+function users_online(){
+    global $connection;
+    $session  = session_id();
+    $time = time();
+    $time_out_in_sec = 30;
+    $time_out = $time - $time_out_in_sec;
+
+    $query = "select * from users_online where session = '$session' ";
+    $send_query = mysqli_query($connection,$query);
+    $count = mysqli_num_rows($send_query);
+    if ($count == NULL){
+        mysqli_query($connection,"insert into users_online(session,time) values ('$session','$time')");
+    }else{
+        mysqli_query($connection,"update users_online set time='$time' where session='$session'");
+    }
+
+    $users_online_query = mysqli_query($connection,"select * from users_online where time > '$time_out'");
+   return $count_users = mysqli_num_rows($users_online_query);
+
+}
 
 function mY_prep($string){
     global $connection;

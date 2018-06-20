@@ -10,5 +10,6 @@
 <h1 class="page-header">
     Welcome to Admin
     <small><?php echo $_SESSION['user_first_name']; ?></small>
-</h1>
 
+</h1>
+<h3><?php echo "Users Online: " . users_online(); ?></h3>
