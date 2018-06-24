@@ -24,9 +24,9 @@
     $display_users = mysqli_query($connection,$query);
 
     while($row = mysqli_fetch_assoc($display_users)){
-        $user_id = $row['user_id'];
-        $user_name = $row['user_name'];
-        $user_first_name = $row['user_first_name'];
+        $user_id = h($row['user_id']);
+        $user_name = h($row['user_name']);
+        $user_first_name = h($row['user_first_name']);
         $user_last_name  = $row['user_last_name'];
         $user_email = $row['user_email'];
         $user_role = $row['user_role'];

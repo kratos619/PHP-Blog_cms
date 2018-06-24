@@ -2,15 +2,6 @@
 /**
  * Created by PhpStorm.
  * User: Gaurav
- * Date: 31-12-2017
- * Time: 06:18
- */
-?>
-
-<?php
-/**
- * Created by PhpStorm.
- * User: Gaurav
  * Date: 28-12-2017
  * Time: 16:24
  */

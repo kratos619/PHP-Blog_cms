@@ -30,6 +30,15 @@ function mY_prep($string){
     return mysqli_real_escape_string($connection, $string);
 }
 
+function h($string){
+return htmlspecialchars($string);
+}
+
+
+function escape_string($string){
+    global $connection;
+    return mysqli_real_escape_string($connection, $string);
+}
 /**
  * Created by PhpStorm.
  * User: Gaurav

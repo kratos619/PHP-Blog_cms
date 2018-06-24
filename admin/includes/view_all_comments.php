@@ -25,13 +25,13 @@
     $display_comments = mysqli_query($connection,$query);
 
     while($row = mysqli_fetch_assoc($display_comments)){
-        $comment_id = $row['comment_id'];
-        $comment_post_id = $row['comment_post_id'];
-        $comment_author = $row['comment_author'];
-        $comment_content  = $row['comment_content'];
-        $comment_email = $row['comment_email'];
-        $comment_status = $row['comment_status'];
-        $comment_date = $row['commetn_date'];
+        $comment_id = h($row['comment_id']);
+        $comment_post_id = h($row['comment_post_id']);
+        $comment_author = h($row['comment_author']);
+        $comment_content  = h($row['comment_content']);
+        $comment_email = h($row['comment_email']);
+        $comment_status = h($row['comment_status']);
+        $comment_date = h($row['commetn_date']);
         ?>
         <tr>
             <td><?php echo $comment_id; ?></td>
@@ -43,8 +43,8 @@
             $query = "select * from posts WHERE post_id = $comment_post_id";
             $select_post_id_query = mysqli_query($connection, $query);
             while($row = mysqli_fetch_assoc($select_post_id_query)){
-                $post_id = $row['post_id'];
-                $post_title = $row['post_title'];
+                $post_id = h($row['post_id']);
+                $post_title = h($row['post_title']);
                 ?>
 
                 <td><a href="../post.php?full_post=<?php echo $post_id; ?>"> <?php echo $post_title; ?> </a></td>
@@ -72,21 +72,21 @@
 </table>
 <?php
 if(isset($_GET['approve'])){
-    $selected_comment_id = $_GET['approve'];
+    $selected_comment_id = escape_string($_GET['approve']);
     $query = "update comments set comment_status = 'approve' WHERE comment_id = {$selected_comment_id}";
     $approve_comments = mysqli_query($connection, $query);
     redirec_to("comments.php");
 }
 
 if(isset($_GET['unapprove'])){
-    $selected_comment_id = $_GET['unapprove'];
+    $selected_comment_id = escape_string($_GET['unapprove']);
     $query = "update comments set comment_status = 'unapprove' WHERE comment_id = {$selected_comment_id}";
     $unapprove_comments = mysqli_query($connection, $query);
     redirec_to("comments.php");
 }
 
 if(isset($_GET['delete_comment'])){
-    $selected_comment_id = $_GET['delete_comment'];
+    $selected_comment_id = escape_string($_GET['delete_comment']);
     $query = "delete from comments WHERE comment_id = {$selected_comment_id}";
 $delete_comment = mysqli_query($connection,$query);
 redirec_to("comments.php");
