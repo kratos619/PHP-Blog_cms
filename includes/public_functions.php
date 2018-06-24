@@ -11,7 +11,6 @@ function mY_prep($string){
     return mysqli_real_escape_string($connection, $string);
 }
 
-
 function h($string){
 return htmlspecialchars($string);
 }

@@ -57,7 +57,7 @@ require_once "db.php";
                 <ul class="list-unstyled">
                     <?php
                     while($row = mysqli_fetch_assoc($select_categories_sidebar)){
-                        $cat_title = $row["cat_title"];
+                        $cat_title = h($row["cat_title"]);
                         echo "<li><a href='#'>{$cat_title}</a></li>";
                     }
                     ?>

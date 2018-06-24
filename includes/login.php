@@ -1,4 +1,5 @@
 <?php
+include "public_functions.php";
 /**
  * Created by PhpStorm.
  * User: Gaurav
@@ -18,13 +19,13 @@ if(isset($_POST['sign_up'])){
     $login_attempt = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_assoc($login_attempt)){
         //$user_first_name = $row['user_first_name'];
-        $user_first_name = $row['user_first_name'];
-        $user_last_name = $row['user_last_name'];
-        $user_name = $row['user_name'];
-        $user_password = $row['user_password'];
-        $user_email = $row['user_email'];
-        $user_role = $row['user_role'];
-        $user_id = $row['user_id'];
+        $user_first_name = h($row['user_first_name']);
+        $user_last_name = h($row['user_last_name']);
+        $user_name = h($row['user_name']);
+        $user_password = h($row['user_password']);
+        $user_email = h($row['user_email']);
+        $user_role = h($row['user_role']);
+        $user_id = h($row['user_id']);
 
     }
     
