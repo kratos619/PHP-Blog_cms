@@ -47,14 +47,14 @@
                 $select_all_post_query = mysqli_query($connection,$query);
 
                 while($row = mysqli_fetch_assoc($select_all_post_query)){
-                    $post_id = $row['post_id'];
-                    $post_title = $row["post_title"];
-                    $post_author = $row["post_author"];
+                    $post_id = h($row['post_id']);
+                    $post_title = h($row["post_title"]);
+                    $post_author = h($row["post_author"]);
                    // $post_title = $row["post_title"];
-                    $post_date  = $row["post_date"];
-                    $post_content = $row["post_content"];
-                    $post_tags = $row["post_tags"];
-                    $post_image = $row['post_image'];
+                    $post_date  = h($row["post_date"]);
+                    $post_content = h($row["post_content"]);
+                    $post_tags =  h($row["post_tags"]);
+                    $post_image = h($row['post_image']);
              ?>
                
                 

@@ -12,25 +12,23 @@
 
                 if(isset($_GET['full_post'])) {
                     
-                    $selected_post_id = $_GET['full_post'];
+                    $selected_post_id = escape_string($_GET['full_post']);
                     
                     // count post viewss
                     $query = "update posts set post_counts = post_counts + 1 where post_id = {$selected_post_id}";
                     $count_post = mysqli_query($connection, $query);
                      confirm_connection($count_post);
                      
-                    
-                    
                     $query = "SELECT * FROM posts WHERE post_id = {$selected_post_id}";
                     $select_all_post_query = mysqli_query($connection, $query);
                     while ($row = mysqli_fetch_assoc($select_all_post_query)){
-                        $post_title = $row["post_title"];
-                        $post_author = $row["post_author"];
+                        $post_title = h($row["post_title"]);
+                        $post_author = h($row["post_author"]);
                         // $post_title = $row["post_title"];
-                        $post_date = $row["post_date"];
-                        $post_content = $row["post_content"];
-                        $post_tags = $row["post_tags"];
-                        $post_image = $row['post_image'];
+                        $post_date = h($row["post_date"]);
+                        $post_content = h($row["post_content"]) ;
+                        $post_tags = h($row["post_tags"]);
+                        $post_image = h($row['post_image']);
               
 
                    ?>
@@ -90,10 +88,10 @@
                     </form>
                     <?php
                     if(isset($_POST['submit_comment'])  && isset($_GET['full_post'])){
-                        $selected_post_id = $_GET['full_post'];
-                        $comment_author = $_POST['comment_author'];
-                        $comment_email = $_POST['comment_email'];
-                        $comment_content = $_POST['comment_content'];
+                        $selected_post_id = escape_string($_GET['full_post']);
+                        $comment_author = escape_string($_POST['comment_author']);
+                        $comment_email = escape_string($_POST['comment_email']);
+                        $comment_content = escape_string($_POST['comment_content']);
                         
                         if(!empty($comment_author) && !empty($comment_email) && !empty($comment_content)){
                             
@@ -115,9 +113,9 @@
                 $query = "select * from comments WHERE comment_post_id = {$selected_post_id } AND comment_status = 'approve'";
                 $display_comment = mysqli_query($connection, $query);
                 while($row = mysqli_fetch_assoc($display_comment)){
-                    $comment_content = $row['comment_content'];
-                    $commetn_date = $row['commetn_date'];
-                    $comment_author = $row['comment_author'];
+                    $comment_content = h($row['comment_content']);
+                    $commetn_date = h($row['commetn_date']);
+                    $comment_author = h($row['comment_author']);
                 ?>
                     <div class="media">
                         <a class="pull-left" href="#">

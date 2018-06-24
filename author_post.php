@@ -1,4 +1,3 @@
-
 <?php include "includes/header.php"; ?>
 <?php include "includes/navigation.php"; ?>
     <!-- Page Content -->
@@ -11,18 +10,18 @@
                 <?php
 
                 if(isset($_GET['full_post'])) {
-                    $selected_post_id = $_GET['full_post'];
-                    $selected_post_author = $_GET['author'];
+                    $selected_post_id = escape_string($_GET['full_post']);
+                    $selected_post_author = escape_string($_GET['author']);
                     $query = "SELECT * FROM posts WHERE post_author = '{$selected_post_author}'";
                     $select_all_post_query = mysqli_query($connection, $query);
                     while ($row = mysqli_fetch_assoc($select_all_post_query)){
-                        $post_title = $row["post_title"];
-                        $post_author = $row["post_author"];
+                        $post_title = h($row["post_title"]);
+                        $post_author = h($row["post_author"]);
                         // $post_title = $row["post_title"];
-                        $post_date = $row["post_date"];
-                        $post_content = $row["post_content"];
-                        $post_tags = $row["post_tags"];
-                        $post_image = $row['post_image'];
+                        $post_date = h($row["post_date"]);
+                        $post_content = h($row["post_content"]);
+                        $post_tags = h($row["post_tags"]);
+                        $post_image = h($row['post_image']);
 
                    ?>
 

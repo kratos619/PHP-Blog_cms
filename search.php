@@ -11,7 +11,7 @@
                 <?php
 
                 if(isset($_POST['submit_search'])){
-                  $search =  htmlspecialchars ($_POST['search']);
+                  $search = escape_string($_POST['search']);
 
                     $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' ";
                     $search_query = mysqli_query($connection,$query);
@@ -25,12 +25,12 @@
                     }else {
 
                         while($row = mysqli_fetch_assoc($search_query)){
-                            $post_title = $row["post_title"];
-                            $post_author = $row["post_author"];
+                            $post_title = h($row["post_title"]);
+                            $post_author = h($row["post_author"]);
                             // $post_title = $row["post_title"];
-                            $post_date  = $row["post_date"];
-                            $post_content = $row["post_content"];
-                            $post_tags = $row["post_tags"];
+                            $post_date  = h($row["post_date"]);
+                            $post_content = h($row["post_content"]) ;
+                            $post_tags = h($row["post_tags"]);
                             ?>
                             <h1 class="page-header">
                                 Page Heading
