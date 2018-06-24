@@ -24,15 +24,16 @@
                     $lastname = mY_prep($_POST['lastname']);
                     $userrole = "subscriber";
                   
-                    $query = "select user_salt from users";
-                    $select_rand_salt = mysqli_query($connection, $query);
-                    confirm_connection($select_rand_salt);
-                    $row = mysqli_fetch_array($select_rand_salt);
-                    $salt = $row['user_salt'];
-                    
-                    //encrypt password
-                    $password = crypt($password,$salt);
+                     //new encrypt password
+                    $password = password_hash($password,PASSWORD_BCRYPT,array('cost'=>12));
                 
+                    // $query = "select user_salt from users";
+                    // $select_rand_salt = mysqli_query($connection, $query);
+                    // confirm_connection($select_rand_salt);
+                    // $row = mysqli_fetch_array($select_rand_salt);
+                    // $salt = $row['user_salt'];
+                    
+                   
                     
                    if(empty($email) and empty($username) and empty($password)){
                        echo "Fields cannot be empty";
