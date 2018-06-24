@@ -37,7 +37,6 @@ if(isset($_POST['sign_up'])){
         $_SESSION['user_last_name'] = $user_last_name;
         $_SESSION['user_role'] = $user_role;
         $_SESSION['user_id'] = $user_id;
-
         redirec_to("../admin/index.php");
     }else{
         //edirec_to("../index.php");
