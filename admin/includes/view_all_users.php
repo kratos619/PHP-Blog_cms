@@ -27,10 +27,10 @@
         $user_id = h($row['user_id']);
         $user_name = h($row['user_name']);
         $user_first_name = h($row['user_first_name']);
-        $user_last_name  = $row['user_last_name'];
-        $user_email = $row['user_email'];
-        $user_role = $row['user_role'];
-        $user_image = $row['user_image'];
+        $user_last_name  = h($row['user_last_name']);
+        $user_email = h($row['user_email']);
+        $user_role = h($row['user_role']);
+        $user_image = h($row['user_image']);
         ?>
         <tr>
             <td><?php echo $user_id; ?></td>
@@ -60,7 +60,7 @@
 </table>
 <?php
 if(isset($_GET['delete_user'])){
-    $selected_user_id = $_GET['delete_user'];
+    $selected_user_id = escape_string($_GET['delete_user']);
     $query = "delete from users WHERE user_id = {$selected_user_id}";
 $delete_comment = mysqli_query($connection,$query);
 redirec_to("users.php");
