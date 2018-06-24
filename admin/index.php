@@ -36,7 +36,7 @@
                                         $select_all_posts = mysqli_query($connection, $query);
                                         $count_all_posts = mysqli_num_rows($select_all_posts);
                                         ?>
-                                        <div class='huge'><?php echo $count_all_posts; ?></div>
+                                        <div class='huge'><?php echo h($count_all_posts); ?></div>
                                         <div>Posts</div>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                         $select_all_comments = mysqli_query($connection, $query);
                                         $count_all_comments = mysqli_num_rows($select_all_comments);
                                         ?>
-                                        <div class='huge'><?php echo $count_all_comments; ?></div>
+                                        <div class='huge'><?php echo h($count_all_comments); ?></div>
                                         <div>Comments</div>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
                                         $select_all_users = mysqli_query($connection, $query);
                                         $count_all_users = mysqli_num_rows($select_all_users);
                                         ?>
-                                        <div class='huge'><?php echo $count_all_users; ?></div>
+                                        <div class='huge'><?php echo h($count_all_users); ?></div>
                                         <div> Users</div>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                                         $select_all_cat = mysqli_query($connection, $query);
                                         $count_all_cat = mysqli_num_rows($select_all_cat);
                                         ?>
-                                        <div class='huge'><?php echo $count_all_cat; ?></div>
+                                        <div class='huge'><?php echo h($count_all_cat); ?></div>
                                         <div>Categories</div>
                                     </div>
                                 </div>

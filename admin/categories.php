@@ -53,7 +53,7 @@
                                 <?php
                                 // update selected categories
                                 if(isset($_POST['update'])){
-                                    $edit_cat_title = $_POST['edit_cat_title'];
+                                    $edit_cat_title =  escape_string($_POST['edit_cat_title']);
                                     $query = "update categories set cat_title = '{$edit_cat_title}' where cat_id = {$selected_cat_id} ";
                                     $update_categories = mysqli_query($connection,$query);
                                     if(!$update_categories){
