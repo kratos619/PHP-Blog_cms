@@ -28,14 +28,10 @@ if(isset($_POST['sign_up'])){
 
     }
     
-    $password = crypt($password,$user_password);
+   // $password = crypt($password,$user_password);
+// password_verify(user_enter_password , password_come_from_db)
 
-    if($username !== $user_name or $username !== $user_email and $password !== $user_password){
-        redirec_to("index.php");
-    }elseif($username === $user_email and $password === $user_password){
-        redirec_to("../admin/index.php");
-
-    }elseif ($username === $user_name and $password === $user_password){
+   if (password_verify($password, $user_password)){
         $_SESSION['username'] = $user_name;
         $_SESSION['user_first_name'] = $user_first_name;
         $_SESSION['user_last_name'] = $user_last_name;
