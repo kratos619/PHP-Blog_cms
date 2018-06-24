@@ -48,18 +48,18 @@
                                     $select_items = mysqli_query($connection, $query);
                                     confirm_connection($select_items);
                                     while ($row = mysqli_fetch_assoc($select_items)) {
-                                        $post_id = $row['post_id'];
-                                        $post_tags = $row['post_tags'];
-                                        $post_status = $row['post_status'];
-                                        $post_user = $row['post_user'];
-                                        $post_category_id = $row['post_category_id'];
-                                        $post_date = $row['post_date'];
-                                        $post_title = $row['post_title'];
-                                        $post_image = $row['post_image'];
+                                        $post_id = h($row['post_id']);
+                                        $post_tags = h($row['post_tags']);
+                                        $post_status = h($row['post_status']);
+                                        $post_user = h($row['post_user']);
+                                        $post_category_id = h($row['post_category_id']);
+                                        $post_date = h($row['post_date']);
+                                        $post_title = h($row['post_title']);
+                                        $post_image = h($row['post_image']);
                                         // $post_status = $row['post_status'];
-                                        $post_content = $row['post_content'];
-                                        $post_author = $row['post_author'];
-                                        $post_comments = $row ['post_comments'];
+                                        $post_content = h($row['post_content']);
+                                        $post_author = h($row['post_author']);
+                                        $post_comments = h($row ['post_comments']);
                                     }
                                     
         $query = "insert into posts (post_tags,post_category_id,post_title,post_author,post_date,post_image,post_content) ";
@@ -113,19 +113,19 @@ $query = "SELECT * FROM posts";
 $display_posts = mysqli_query($connection, $query);
 
 while ($row = mysqli_fetch_assoc($display_posts)) {
-    $post_id = $row['post_id'];
-    $post_tags = $row['post_tags'];
-    $post_status = $row['post_status'];
-    $post_user = $row['post_user'];
-    $post_category_id = $row['post_category_id'];
-    $post_date = $row['post_date'];
-    $post_title = $row['post_title'];
-    $post_image = $row['post_image'];
+    $post_id = h($row['post_id']);
+    $post_tags = h($row['post_tags']);
+    $post_status = h($row['post_status']);
+    $post_user = h($row['post_user']);
+    $post_category_id = h($row['post_category_id']);
+    $post_date = h($row['post_date']);
+    $post_title = h($row['post_title']);
+    $post_image = h($row['post_image']);
     // $post_status = $row['post_status'];
-    $post_content = $row['post_content'];
-    $post_author = $row['post_author'];
-    $post_comments = $row ['post_comments'];
-    $post_views = $row['post_counts'];
+    $post_content = h($row['post_content']);
+    $post_author = h($row['post_author']);
+    $post_comments = h($row ['post_comments']);
+    $post_views = h($row['post_counts']);
     ?>
                                     <tr>
                                         <td><input class="checkbox" name="checkBoxArray[]" type="checkbox" value="<?php echo $post_id; ?>"></td>
@@ -138,7 +138,7 @@ while ($row = mysqli_fetch_assoc($display_posts)) {
     $query = "select * from categories WHERE cat_id = {$post_category_id}";
     $set_cat = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_assoc($set_cat)) {
-        $cat_by_post = $row['cat_title'];
+        $cat_by_post = h($row['cat_title']);
         ?>
                                             <td><?php echo $cat_by_post; ?></td>
                                         <?php } ?>
@@ -159,7 +159,7 @@ while ($row = mysqli_fetch_assoc($display_posts)) {
                                    
                                     if (isset($_SESSION['user_role'])) {
                                         if (isset($_SESSION['user_role'] == 'admin' )) {
-                                    $delete_selected_post_id = $_GET['delete_post'];
+                                    $delete_selected_post_id = escape_string($_GET['delete_post']);
                                     $query = "delete from posts WHERE post_id = {$delete_selected_post_id}";
                                     $delete_post = mysqli_query($connection, $query);
                                     confirm_connection($delete_post);

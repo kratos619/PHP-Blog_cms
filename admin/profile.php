@@ -28,20 +28,20 @@
                                 <h3 class="bg-info well">Profile</h3>
                                 <?php
                                 if(isset($_SESSION['username']) && isset($_SESSION['user_id'])){
-                                    $selected_id = $_SESSION['user_id'];
-                                    $selected_username = $_SESSION['username'];
+                                    $selected_id = escape_string($_SESSION['user_id']);
+                                    $selected_username = escape_string($_SESSION['username']);
                                     $query = "select * from users WHERE user_id = {$selected_id}";
                                     $display_selected_user = mysqli_query($connection, $query);
                                     confirm_connection($display_selected_user);
                                     while ($row = mysqli_fetch_assoc($display_selected_user)){
-                                        $user_id = $row['user_id'];
-                                        $user_name = $row['user_name'];
-                                        $user_first_name = $row['user_first_name'];
-                                        $user_last_name  = $row['user_last_name'];
-                                        $user_email = $row['user_email'];
-                                        $user_role = $row['user_role'];
-                                        $user_image = $row['user_image'];
-                                        $user_password = $row['user_password'];
+                                        $user_id = escape_string($row['user_id']);
+                                        $user_name = escape_string($row['user_name']);
+                                        $user_first_name = escape_string($row['user_first_name']);
+                                        $user_last_name  = escape_string($row['user_last_name']) ;
+                                        $user_email = escape_string($row['user_email']);
+                                        $user_role = escape_string($row['user_role']);
+                                        $user_image = escape_string($row['user_image']);
+                                        $user_password = escape_string($row['user_password']);
 
                                         ?>
                                         <form method="post" action="profile.php?user_id=<?php echo $selected_id; ?>" enctype="multipart/form-data">
@@ -99,13 +99,13 @@
                                 ?>
                                 <?php
                                 if(isset($_POST['update_user'])){
-                                    $user_name = $_POST['user_name'];
-                                    $user_first_name = $_POST['user_first_name'];
-                                    $user_last_name = $_POST['user_last_name'];
-                                    $user_email = $_POST['user_email'];
+                                    $user_name = escape_string($_POST['user_name']) ;
+                                    $user_first_name = escape_string($_POST['user_first_name']) ;
+                                    $user_last_name = escape_string($_POST['user_last_name']);
+                                    $user_email = escape_string($_POST['user_email']);
                                     //$user_image = $_POST['user_image'];
-                                    $user_role = $_POST['user_role'];
-                                    $user_password = $_POST['user_password'];
+                                    $user_role = escape_string($_POST['user_role']);
+                                    $user_password = escape_string($_POST['user_password']);
 
                                     $query = "update users set  user_name = '{$user_name}', user_first_name = '{$user_first_name}', user_last_name = '{$user_last_name}', user_email = '{$user_email}', user_role = '{$user_role}', user_password = '{$user_password}' WHERE user_id = {$selected_id} ";
 
