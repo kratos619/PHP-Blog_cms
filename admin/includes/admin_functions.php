@@ -56,7 +56,7 @@ function confirm_connection($result){
 function insert_categories(){
     global $connection;
     if(isset($_POST['submit'])){
-        $cat_title = $_POST['cat_title'];
+        $cat_title = escape_string($_POST['cat_title']);
         //validations
         if($cat_title == "" || empty($cat_title)){
             $message = "fields Cant be Blank";
@@ -87,8 +87,8 @@ function display_all_categories(){
     <?php
     // display categories
     while ($row = mysqli_fetch_assoc($select_categories_table)){
-        $categories_id = $row['cat_id'];
-        $categories_title = $row["cat_title"];
+        $categories_id = h($row['cat_id']) ;
+        $categories_title = h($row["cat_title"]);
         echo "<tr>";
         echo "<td>" . $categories_title . "</td>";
         echo "<td>"."<a onclick='confirm('Are you sure want to delete it')' href='categories.php?delete_categories={$categories_id}'>Delete</a>" . " | " ."<a href='categories.php?edit_categories={$categories_id}'>Edit</a>" . "</td>";
@@ -102,7 +102,7 @@ function delete_selected_categories(){
 global $connection;
     $delete_categories = "delete_categories";
     if(isset($_GET[$delete_categories])){
-        $selected_cat_id = $_GET[$delete_categories];
+        $selected_cat_id = escape_string($_GET[$delete_categories]);
         $query = "DELETE FROM categories WHERE cat_id = {$selected_cat_id }";
         $delete_cat = mysqli_query($connection,$query);
         redirec_to("categories.php");

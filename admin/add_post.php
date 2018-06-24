@@ -20,8 +20,8 @@
         $post_image_temp = $_FILES['image']['tmp_name'];
 
         $post_status = mY_prep($_POST['post_status']);
-        $post_content = $_POST['post_content'];
-        $post_author  = $_POST['post_author'];
+        $post_content = escape_string($_POST['post_content']);
+        $post_author  = escape_string ($_POST['post_author']);
         //$post_view_counts = 4;
         move_uploaded_file($post_image_temp,"images/$post_image");
 
@@ -62,8 +62,8 @@
                                             $query = "select * from categories";
                                             $display_all_cat = mysqli_query($connection, $query);
                                             while ($row = mysqli_fetch_assoc($display_all_cat)){
-                                                $cat_title = $row['cat_title'];
-                                                $cat_id = $row['cat_id'];
+                                                $cat_title = h($row['cat_title']);
+                                                $cat_id = h($row['cat_id']);
                                             ?>
                                                 <option value="<?php echo $cat_id;?>"><?php echo $cat_title ?></option>
                                                 <?php

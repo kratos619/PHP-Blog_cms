@@ -44,8 +44,8 @@
                                         $select_categories_id = mysqli_query($connection,$query);
                                         // display selected categories
                                         while ($row = mysqli_fetch_assoc($select_categories_id)) {
-                                            $categories_id = $row['cat_id'];
-                                            $categories_title = $row["cat_title"];
+                                            $categories_id = h($row['cat_id']);
+                                            $categories_title = h($row["cat_title"]);
 
                                     ?>
 
