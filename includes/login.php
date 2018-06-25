@@ -15,6 +15,8 @@ if(isset($_POST['sign_up'])){
     $username = mY_prep($_POST['user_name']);
     $password = mY_prep($_POST['user_password']);
 
+    if(!empty($username) && !empty($password)){
+
     $query = "select * from users WHERE user_name = '{$username}' or user_email = '{$username}' and user_password = '{$password}' ";
     $login_attempt = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_assoc($login_attempt)){
@@ -29,6 +31,10 @@ if(isset($_POST['sign_up'])){
 
     }
     
+    }else {
+        redirec_to('index.php');
+    }
+
    // $password = crypt($password,$user_password);
 // password_verify(user_enter_password , password_come_from_db)
 
@@ -40,7 +46,7 @@ if(isset($_POST['sign_up'])){
         $_SESSION['user_id'] = $user_id;
         redirec_to("../admin/index.php");
     }else{
-        //edirec_to("../index.php");
+        redirec_to("../index.php");
     }
 
 }
