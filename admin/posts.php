@@ -156,9 +156,8 @@ while ($row = mysqli_fetch_assoc($display_posts)) {
 ?>
                                 <?php                               
                                 if (isset($_GET['delete_post'])) {
-                                   
                                     if (isset($_SESSION['user_role'])) {
-                                        if (isset($_SESSION['user_role'] == 'admin' )) {
+                                     if (isset($_SESSION['user_role']) == 'admin') {
                                     $delete_selected_post_id = escape_string($_GET['delete_post']);
                                     $query = "delete from posts WHERE post_id = {$delete_selected_post_id}";
                                     $delete_post = mysqli_query($connection, $query);
