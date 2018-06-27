@@ -148,26 +148,11 @@ while ($row = mysqli_fetch_assoc($display_posts)) {
                                         <td><?php echo $post_views; ?></td>
                                         <td><a href="../post.php?full_post=<?php echo $post_id; ?>">View Post</a></td>
                                         <td><?php echo $post_date; ?></td>
-                                        <td><a href="edit_post.php?edit_post=<?php echo $post_id; ?>">Edit Post</a> || <a
-                                                onclick="javascript: return confirm('Are You Sure');"  href="posts.php?delete_post=<?php echo $post_id ?>">Delete Post</a></td>
+                                        <td><a href="edit_post.php?edit_post=<?php echo $post_id; ?>">Edit Post</a> || <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">Delete</button></td>
                                     </tr>
     <?php
 }
 ?>
-                                <?php                               
-                                if (isset($_GET['delete_post'])) {
-                                    if (isset($_SESSION['user_role'])) {
-                                     if (isset($_SESSION['user_role']) == 'admin') {
-                                    $delete_selected_post_id = escape_string($_GET['delete_post']);
-                                    $query = "delete from posts WHERE post_id = {$delete_selected_post_id}";
-                                    $delete_post = mysqli_query($connection, $query);
-                                    confirm_connection($delete_post);
-                                    redirec_to("posts.php");
-                                        }
-                                    }
-                                    
-                                }
-                                ?>
 
                             </tbody>
                         </table>
@@ -184,5 +169,40 @@ while ($row = mysqli_fetch_assoc($display_posts)) {
     </div>
     <!-- /#page-wrapper -->
 
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="posts.php?delete_post=<?php echo $post_id ?>" class="btn btn-danger btn-lg">Delete Post</a>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php include "includes/admin_footer.php"; ?>
 
+  
+
+                                <?php                               
+                                if (isset($_GET['delete_post'])) {
+                                    if (isset($_SESSION['user_role'])) {
+                                     if (isset($_SESSION['user_role']) == 'admin') {
+                                    $delete_selected_post_id = escape_string($_GET['delete_post']);
+                                    $query = "delete from posts WHERE post_id = {$delete_selected_post_id}";
+                                    $delete_post = mysqli_query($connection, $query);
+                                    confirm_connection($delete_post);
+                                    redirec_to("posts.php");
+                                        }
+                                    }
+                                    
+                                }
+                                ?>
