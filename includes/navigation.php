@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Created by PhpStorm.
@@ -5,6 +6,7 @@
  * Date: 25-12-2017
  * Time: 21:53
  */
+//echo basename($_SERVER[PHP_SELF]);
 ?>
 <?php session_start(); ?>
 <?php require_once "db.php";?>
@@ -36,7 +38,8 @@
 
                 while($row = mysqli_fetch_assoc($select_all_categories_query)){
                     $cat_title = $row["cat_title"];
-                    echo "<li><a href='#'>{$cat_title}</a></li>";
+                  $cat_id = $row['cat_id'];
+                    echo "<li><a href='cat.php?cat_type=$cat_id'>{$cat_title}</a></li>";
                 }
                 ?>
                 <li><a href="admin">Admin</a></li>

@@ -153,16 +153,12 @@ while ($row = mysqli_fetch_assoc($display_posts)) {
     <?php
 }
 ?>
-
                             </tbody>
                         </table>
                     </form>
-
-
                 </div>
             </div>
             <!-- /.row -->
-
         </div>
         <!-- /.container-fluid -->
 

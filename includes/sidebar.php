@@ -29,6 +29,17 @@ require_once "db.php";
         </form> <!-- /.form group -->
     </div>
     <!-- Blog Search Well -->
+    <?php
+    if(isset($_SESSION['username'])){
+?>
+
+    <div class="well">
+        <h4>Hello <?php echo $_SESSION['user_first_name']; ?></h4>
+            <a href="includes/logout.php" class="btn btn-danger"> Logout</a>
+    </div>
+<?php
+    }   else{
+    ?>
     <div class="well">
         <h4>Log IN</h4>
         <form action="includes/login.php" method="post">
@@ -41,6 +52,10 @@ require_once "db.php";
             <input type="submit" value="Sign Up" name="sign_up" class="btn btn-primary" >
         </form> <!-- /.form group -->
     </div>
+
+<?php
+    }
+    ?>
 
     <?php
 
