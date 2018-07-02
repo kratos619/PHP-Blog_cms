@@ -42,7 +42,6 @@
                     echo "<li><a href='/PHP-Blog_cms/cat.php?cat_type=$cat_id'>{$cat_title}</a></li>";
                 }
                 ?>
-                <li><a href="/PHP-Blog_cms/admin">Admin</a></li>
                 <?php
                 if(isset($_SESSION['user_role'])){
                     if(isset($_GET['full_post'])){
@@ -57,6 +56,15 @@
                 ?>
 <li><a href="registration">Registration</a></li>
 <li><a href="contact">Contact Us</a></li>
+<?php 
+if(islogin()): ?>
+
+ <li><a href="/PHP-Blog_cms/admin">Admin</a></li>
+ <li><a href="/PHP-Blog_cms/includes/logout.php">Logout</a></li>
+            <?php else: ?>
+            <li><a href="/PHP-Blog_cms/login.php">LogIn</a></li>
+
+<?php endif; ?>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

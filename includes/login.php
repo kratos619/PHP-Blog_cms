@@ -1,5 +1,4 @@
 <?php
-include "public_functions.php";
 /**
  * Created by PhpStorm.
  * User: Gaurav
