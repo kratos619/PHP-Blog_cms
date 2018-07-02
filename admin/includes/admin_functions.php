@@ -2,6 +2,29 @@
 // redirect to onther page
 function redirec_to($page){
     header("Location:".$page);
+    exit;
+}
+
+function ifitismethod($method=null){
+    if($_SERVER['REQUEST_METHOD'] == strtoupper($method)){
+        return true;
+    }
+    return false;
+}
+
+function islogin()
+{
+    if(isset($_SESSION['user_role'])){
+        return true;
+    }
+    return false;
+}
+
+function checkifuserloginandredirect($location = null)
+{
+    if(isslogin()){
+        redirec_to($location);
+    }
 }
 
 function users_online(){
