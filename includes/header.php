@@ -7,7 +7,7 @@
  * Time: 21:44
  */
 ?>
-<?php require_once "db.php";?>
+<?php require "db.php";?>
 <?php include "public_functions.php";?>
 
 <!DOCTYPE html>

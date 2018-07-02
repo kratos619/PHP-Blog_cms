@@ -1,18 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Gaurav
  * Date: 27-12-2017
  * Time: 23:30
  */
-
-function ifitismethod($method=null){
-    if($_SERVER['REQUEST_METHOD'] == strtoupper($method)){
-        return true;
-    }
-    return false;
-}
-
 
 function islogin()
 {
@@ -21,6 +14,16 @@ function islogin()
     }
     return false;
 }
+
+
+function ifitismethod($method= null){
+    if($_SERVER['REQUEST_METHOD'] == strtoupper($method)){
+        return true;
+    }
+    return false;
+}
+
+
 
 function checkifuserloginandredirect($location = null)
 {
@@ -58,18 +61,16 @@ function redirec_to($page){
 function login_user($username , $password){
     global $connection;
 $username = trim($username);
-$username = trim($password);
+$password  = trim($password);
 
-    $username = mY_prep($_POST['user_name']);
-    $password = mY_prep($_POST['user_password']);
+    $username = mY_prep($_POST['username']);
+    $password = mY_prep($_POST['password']);
 
     if(!empty($username) && !empty($password)){
 
     $query = "select * from users WHERE user_name = '{$username}' or user_email = '{$username}' and user_password = '{$password}' ";
     $login_attempt = mysqli_query($connection, $query);
-    if(!$login_attempt){
-        confirm_connection($login_attempt);
-    }
+    
     while ($row = mysqli_fetch_assoc($login_attempt)){
         //$user_first_name = $row['user_first_name'];
         $user_first_name = h($row['user_first_name']);
@@ -90,10 +91,12 @@ if (password_verify($password, $user_password)){
     $_SESSION['user_last_name'] = $user_last_name;
     $_SESSION['user_role'] = $user_role;
     $_SESSION['user_id'] = $user_id;
-    redirec_to("../admin/index.php");
+    redirec_to("/PHP-Blog_cms/admin/index.php");
 }else{
     return false;
 }
-
+return true;
+}else{
+    return false;
 }
 }
