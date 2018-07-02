@@ -3,3 +3,5 @@ RewriteEngine On
 RewriteRule ^(index|contact|registration)$ $1.php [NC,L]
 
 RewriteRule ^post/(\d+)$ post.php?full_post=$1 [NC,L]
+
+RewriteRule ^cat/(\d+)$ cat.php?cat_type=$1 [NC,L]

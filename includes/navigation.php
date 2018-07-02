@@ -39,24 +39,24 @@
                 while($row = mysqli_fetch_assoc($select_all_categories_query)){
                     $cat_title = $row["cat_title"];
                   $cat_id = $row['cat_id'];
-                    echo "<li><a href='cat.php?cat_type=$cat_id'>{$cat_title}</a></li>";
+                    echo "<li><a href='/PHP-Blog_cms/cat.php?cat_type=$cat_id'>{$cat_title}</a></li>";
                 }
                 ?>
-                <li><a href="admin">Admin</a></li>
+                <li><a href="/PHP-Blog_cms/admin">Admin</a></li>
                 <?php
                 if(isset($_SESSION['user_role'])){
                     if(isset($_GET['full_post'])){
                         $selected_post_id =  $_GET['full_post'];
 
-                echo   "<li><a href='admin/edit_post.php?edit_post={$selected_post_id}'>Edit This Post</a></li>";
+                echo   "<li><a href='/PHP-Blog_cms/admin/edit_post.php?edit_post={$selected_post_id}'>Edit This Post</a></li>";
 
                     }
 
                 }
 
                 ?>
-<li><a href="registration.php">Registration</a></li>
-<li><a href="contact.php">Contact Us</a></li>
+<li><a href="registration">Registration</a></li>
+<li><a href="contact">Contact Us</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
