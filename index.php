@@ -63,7 +63,7 @@
                 <h2>
                     <?php echo $count; ?>
                     
-                    <a href="post.php?full_post=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
+                    <a href="post/<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
                 </h2>
                 <p class="lead">
                     by <a href="index.php"><?php echo $post_author; ?></a>
