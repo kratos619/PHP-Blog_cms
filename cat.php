@@ -14,9 +14,6 @@
               
                 </h1>
                 <?php
-                $selected_cat_id = $_GET['cat_type'];
-                ?>
-                <?php
                 
                 if(isset($_GET['page'])){
                    $page = $_GET['page'];
@@ -32,6 +29,7 @@
                     $page_1 = ($page * 5) -5;
                 }
                 
+                $selected_cat_id = $_GET['cat_type'] ;
                 
                 
                 // count posts
@@ -44,14 +42,14 @@
                 
                
                 
-                $query = "select * from posts limit {$page_1}, 5";
+                $query = "select * from posts where post_category_id = '$selected_cat_id'";
                 $select_all_post_query = mysqli_query($connection,$query);
 
                 while($row = mysqli_fetch_assoc($select_all_post_query)){
                     $post_id = h($row['post_id']);
                     $post_title = h($row["post_title"]);
                     $post_author = h($row["post_author"]);
-                   // $post_title = $row["post_title"];
+                    //$post_title = $row["post_title"];
                     $post_date  = h($row["post_date"]);
                     $post_content = $row["post_content"];
                     $post_tags =  h($row["post_tags"]);
